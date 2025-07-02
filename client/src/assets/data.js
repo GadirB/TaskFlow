@@ -192,3 +192,30 @@ export const chartData = [
   { name: 'Medium', total: 50 },
   { name: 'Low', total: 30 },
 ]
+
+export const tasks = [
+  {
+    id: '1',
+    title: 'Fix login bug',
+    description: 'Resolve authentication issue on mobile',
+    stage: 'todo',
+    priority: 'high',
+    createdAt: '2025-07-01T10:00:00Z',
+  },
+  {
+    id: '2',
+    title: 'Design onboarding flow',
+    description: 'UI flow for new users',
+    stage: 'in progress',
+    priority: 'medium',
+    createdAt: '2025-07-02T14:30:00Z',
+  },
+  {
+    id: '3',
+    title: 'Deploy v2.1.0',
+    description: 'Production release deployment',
+    stage: 'completed',
+    priority: 'high',
+    createdAt: '2025-06-30T09:15:00Z',
+  },
+]

@@ -51,3 +51,9 @@ export const BGS = [
     'bg-red-600',
     'bg-green-600',
 ]
+
+export const getCompletedSubTasks = (items) => {
+    const totalCompleted = items?.filter((item) => item.isCompleted).length;
+
+    return totalCompleted;
+}
