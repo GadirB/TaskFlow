@@ -9,33 +9,32 @@ import { useGetAllTaskQuery } from "../redux/slices/api/taskApiSlice";
 import { TASK_TYPE } from "../utils";
 import { useSelector } from "react-redux";
 
-
 const TABS = [
-  { title: 'Board View', icon: <MdGridView /> },
-  { title: 'List View', icon: <FaList /> },
-]
+  { title: "Board View", icon: <MdGridView /> },
+  { title: "List View", icon: <FaList /> },
+];
 
 const Task = () => {
-  const params = useParams()
-  const { user } = useSelector((state) => state.auth)
-  const [searchParams] = useSearchParams()
-  const [searchTerm] = useState(searchParams.get('search') || '')
+  const params = useParams();
+  const { user } = useSelector((state) => state.auth);
+  const [searchParams] = useSearchParams();
+  const [searchTerm] = useState(searchParams.get("search") || "");
 
-  const [selected, setSelected] = useState(0)
-  const [open, setOpen] = useState(false)
+  const [selected, setSelected] = useState(0);
+  const [open, setOpen] = useState(false);
 
-  const status = params?.status || ''
+  const status = params?.status || "";
 
   const { data, isLoading, refetch } = useGetAllTaskQuery({
     strQuery: status,
-    isTrashed: '',
-    search: searchTerm
-  })
+    isTrashed: "",
+    search: searchTerm,
+  });
 
   useEffect(() => {
-    refetch()
-    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
-  }, [open])
+    refetch();
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+  }, [open]);
 
   return isLoading ? (
     <div className='py-10'>
@@ -44,7 +43,7 @@ const Task = () => {
   ) : (
     <div className='w-full'>
       <div className='flex items-center justify-between mb-4'>
-        <Title title={status ? `${status} Tasks` : 'Tasks'} />
+        <Title title={status ? `${status} Tasks` : "Tasks"} />
 
         {!status && user?.isAdmin && (
           <Button
@@ -61,21 +60,24 @@ const Task = () => {
           {!status && (
             <div className='w-full flex justify-between gap-4 md:gap-x-12 py-4'>
               <TaskTitle label='To Do' className={TASK_TYPE.todo} />
-              <TaskTitle label='In Progress' className={TASK_TYPE['in progress']} />
-              <TaskTitle label='completed' className={TASK_TYPE.completed} />
+              <TaskTitle
+                label='In Progress'
+                className={TASK_TYPE["in progress"]}
+              />
+              <TaskTitle label='Completed' className={TASK_TYPE.completed} />
             </div>
           )}
 
           {selected === 0 ? (
             <BoardView tasks={data?.tasks} />
-           ) : (
+          ) : (
             <Table tasks={data?.tasks} />
           )}
         </Tabs>
       </div>
       <AddTask open={open} setOpen={setOpen} />
     </div>
-  )
-}
+  );
+};
 
-export default Task
+export default Task;

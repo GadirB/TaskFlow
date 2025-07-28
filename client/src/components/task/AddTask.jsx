@@ -1,18 +1,27 @@
-import React, { useState } from 'react'
-import { useForm } from 'react-hook-form';
-import { dataFormatter } from '../../utils';
-import { useCreateTaskMutation, useUpdateTaskMutation } from '../../redux/slices/api/taskApiSlice.js';
-import { toast } from 'sonner';
-import ModalWrapper from '../ModalWrapper.jsx';
-import { Dialog } from '@headlessui/react';
-import Textbox from '../Textbox.jsx';
-import { BiImages } from 'react-icons/bi';
-import Loading from '../Loading.jsx';
-import Button from '../Button.jsx';
-import UserList from "./UserSelect.jsx";
-import SelectList from "../SelectList.jsx";
+import { Dialog } from "@headlessui/react";
+import {
+  getDownloadURL,
+  getStorage,
+  ref,
+  uploadBytesResumable,
+} from "firebase/storage";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { BiImages } from "react-icons/bi";
+import { toast } from "sonner";
 
-
+import {
+  useCreateTaskMutation,
+  useUpdateTaskMutation,
+} from "../../redux/slices/api/taskApiSlice";
+import { dateFormatter } from "../../utils";
+import { app } from "../../utils/firebase";
+import Button from "../Button";
+import Loading from "../Loading";
+import ModalWrapper from "../ModalWrapper";
+import SelectList from "../SelectList";
+import Textbox from "../Textbox";
+import UserList from "./UserSelect";
 
 const LISTS = ["TODO", "IN PROGRESS", "COMPLETED"];
 const PRIORIRY = ["HIGH", "MEDIUM", "NORMAL", "LOW"];
@@ -50,11 +59,10 @@ const uploadFile = async (file) => {
   });
 };
 
-
 const AddTask = ({ open, setOpen, task }) => {
   const defaultValues = {
     title: task?.title || "",
-    date: dataFormatter(task?.date || new Date()),
+    date: dateFormatter(task?.date || new Date()),
     team: [],
     stage: "",
     priority: "",
@@ -121,9 +129,8 @@ const AddTask = ({ open, setOpen, task }) => {
     setAssets(e.target.files);
   };
 
-
   return (
-     <>
+    <>
       <ModalWrapper open={open} setOpen={setOpen}>
         <form onSubmit={handleSubmit(handleOnSubmit)}>
           <Dialog.Title
@@ -249,4 +256,4 @@ const AddTask = ({ open, setOpen, task }) => {
   );
 };
 
-export default AddTask
+export default AddTask;
