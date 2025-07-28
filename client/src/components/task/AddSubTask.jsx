@@ -4,7 +4,7 @@ import React from 'react'
 import { useForm } from 'react-hook-form'
 import { toast } from 'sonner';
 import Textbox from '../Textbox.jsx';
-import Loading from '../Loader.jsx';
+import Loading from '../Loading.jsx';
 import Button from '../Button.jsx';
 import { useCreateSubTaskMutation } from '../../redux/slices/api/taskApiSlice.js';
 

@@ -1,6 +1,6 @@
 import React from 'react'
 import { IoMdAdd } from 'react-icons/io'
-import TaskColor from './task/TaskColor.jsx'
+import TaskColor from './TaskColor.jsx'
 
 const TaskTitle = ({ label, className }) => {
   return (

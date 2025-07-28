@@ -1,20 +1,14 @@
-import React, { use, useEffect, useState } from 'react'
-import { FaList } from 'react-icons/fa'
-import { MdGridView } from 'react-icons/md'
-import { useParams, useSearchParams } from 'react-router-dom'
-import Loading from '../components/Loader.jsx'
-import Title from '../components/Title.jsx'
-import { IoMdAdd } from 'react-icons/io'
-import Tabs from '../components/Tabs.jsx'
-import TaskTitle from '../components/TaskTitle.jsx'
-import Button from '../components/Button.jsx'
-import BoardView from '../components/task/BoardView.jsx'
-import { tasks } from '../assets/data.js'
-import { useSelector } from 'react-redux'
-import { useGetAllTaskQuery } from '../redux/slices/api/taskApiSlice.js'
-import { TASK_TYPE } from '../utils/index.js'
-import AddTask from '../components/task/AddTask.jsx'
-import Table from '../components/Table.jsx'
+import React, { useEffect, useState } from "react";
+import { FaList } from "react-icons/fa";
+import { IoMdAdd } from "react-icons/io";
+import { MdGridView } from "react-icons/md";
+import { useParams, useSearchParams } from "react-router-dom";
+import { Button, Loading, Table, Tabs, Title } from "../components";
+import { AddTask, BoardView, TaskTitle } from "../components/task";
+import { useGetAllTaskQuery } from "../redux/slices/api/taskApiSlice";
+import { TASK_TYPE } from "../utils";
+import { useSelector } from "react-redux";
+
 
 const TABS = [
   { title: 'Board View', icon: <MdGridView /> },
