@@ -41,7 +41,7 @@ const ChangePassword = ({ open, setOpen }) => {
         <form onSubmit={handleSubmit(handleOnSubmit)} className=''>
           <Dialog.Title
             as='h2'
-            className='text-base font-bold leading-6 text-gray-900 mb-4'
+            className='text-base font-bold leading-6 text-white mb-4'
           >
             Change Passowrd
           </Dialog.Title>

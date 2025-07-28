@@ -17,10 +17,10 @@ import {
 } from "../components";
 import { TaskColor } from "../components/task";
 import {
-  useDeleteRestoreTastMutation,
+  useDeleteRestoreTaskMutation,
   useGetAllTaskQuery,
 } from "../redux/slices/api/taskApiSlice";
-import { PRIOTITYSTYELS, TASK_TYPE } from "../utils/index";
+import { PRIORITYSTYLES, TASK_TYPE } from "../utils/index";
 import { useSearchParams } from "react-router-dom";
 
 const ICONS = {
@@ -43,7 +43,7 @@ const Trash = () => {
     isTrashed: "true",
     search: searchTerm,
   });
-  const [deleteRestoreTask] = useDeleteRestoreTastMutation();
+  const [deleteRestoreTask] = useDeleteRestoreTaskMutation();
 
   const deleteAllClick = () => {
     setType("deleteAll");
@@ -137,7 +137,7 @@ const Trash = () => {
 
       <td className='py-2 capitalize'>
         <div className={"flex gap-1 items-center"}>
-          <span className={clsx("text-lg", PRIOTITYSTYELS[item?.priority])}>
+          <span className={clsx("text-lg", PRIORITYSTYLES[item?.priority])}>
             {ICONS[item?.priority]}
           </span>
           <span className=''>{item?.priority}</span>

@@ -5,7 +5,7 @@ export const postApiSlice = apiSlice.injectEndpoints({
     endpoints: (builder) => ({
         createTask: builder.mutation({
             query: (data) => ({
-                url: `${TASKS_URLURL}/create`,
+                url: `${TASKS_URL}/create`,
                 method: 'POST',
                 body: data,
                 credentials: 'include',
@@ -14,7 +14,7 @@ export const postApiSlice = apiSlice.injectEndpoints({
 
         duplicateTask: builder.mutation({
             query: (id) => ({
-                url: `${TASK_URL}/duplicate/${id}`,
+                url: `${TASKS_URL}/duplicate/${id}`,
                 method: 'POST',
                 body: {},
                 credentials: 'include',
@@ -23,7 +23,7 @@ export const postApiSlice = apiSlice.injectEndpoints({
 
         updateTask: builder.mutation({
             query: (data) => ({
-                url: `${TASK_URL}/update/${data._id}`,
+                url: `${TASKS_URL}/update/${data.id}`,
                 method: 'PUT',
                 body: data,
                 credentials: 'include',
@@ -31,8 +31,8 @@ export const postApiSlice = apiSlice.injectEndpoints({
         }),
 
         getAllTask: builder.query({
-            query: ({ strQuery, isTrashed, search }) => ({
-                url: `${TASKS_URL}?stage=${strQuery}&isTrashed=${isTrashed}&search=${search}`,
+            query: ({ strQuery, trash, search }) => ({
+                url: `${TASKS_URL}?stage=${strQuery}&trash=${trash}&search=${search}`,
                 method: "GET",
                 credentials: "include",
             }),
@@ -64,17 +64,18 @@ export const postApiSlice = apiSlice.injectEndpoints({
             }),
         }),
 
-        trashTast: builder.mutation({
-            query: ({ id }) => ({
+        trashTask: builder.mutation({
+            query: ({ id, isDeleted }) => ({
                 url: `${TASKS_URL}/${id}`,
                 method: "PUT",
+                body: { isDeleted },
                 credentials: "include",
             }),
         }),
 
-        deleteRestoreTast: builder.mutation({
-            query: ({ id, actionType }) => ({
-                url: `${TASKS_URL}/delete-restore/${id}?actionType=${actionType}`,
+        deleteRestoreTask: builder.mutation({
+            query: ({ id, restore }) => ({
+                url: `${TASKS_URL}/delete-restore/${id}?restore=${restore}`,
                 method: "DELETE",
                 credentials: "include",
             }),
@@ -113,8 +114,8 @@ export const {
   useCreateTaskMutation,
   useGetAllTaskQuery,
   useCreateSubTaskMutation,
-  useTrashTastMutation,
-  useDeleteRestoreTastMutation,
+  useTrashTaskMutation,
+  useDeleteRestoreTaskMutation,
   useDuplicateTaskMutation,
   useUpdateTaskMutation,
   useGetSingleTaskQuery,

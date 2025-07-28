@@ -118,6 +118,7 @@ const AddTask = ({ open, setOpen, task }) => {
 
       setTimeout(() => {
         setOpen(false);
+        window.location.reload();
       }, 500);
     } catch (err) {
       console.log(err);
@@ -135,7 +136,7 @@ const AddTask = ({ open, setOpen, task }) => {
         <form onSubmit={handleSubmit(handleOnSubmit)}>
           <Dialog.Title
             as='h2'
-            className='text-base font-bold leading-6 text-gray-900 mb-4'
+            className='text-base font-bold leading-6 text-white mb-4'
           >
             {task ? "UPDATE TASK" : "ADD TASK"}
           </Dialog.Title>
@@ -201,30 +202,28 @@ const AddTask = ({ open, setOpen, task }) => {
             </div>
 
             <div className='w-full'>
-              <p>Task Description</p>
+              <p className='text-white'>Task Description</p>
               <textarea
                 name='description'
                 {...register("description")}
-                className='w-full bg-transparent px-3 py-1.5 2xl:py-3 border border-gray-300
-            dark:border-gray-600 placeholder-gray-300 dark:placeholder-gray-700
-            text-gray-900 dark:text-white outline-none text-base focus:ring-2
+                className='w-full bg-[#1e293b] px-3 py-1.5 2xl:py-3 border border-[#334155]
+            placeholder-[#94a3b8] text-white outline-none text-base focus:ring-2
             ring-blue-300'
               ></textarea>
             </div>
 
             <div className='w-full'>
-              <p>
+              <p className='text-white'>
                 Add Links{" "}
-                <span className='text- text-gray-600'>
+                <span className='text-[#94a3b8]'>
                   seperated by comma (,)
                 </span>
               </p>
               <textarea
                 name='links'
                 {...register("links")}
-                className='w-full bg-transparent px-3 py-1.5 2xl:py-3 border border-gray-300
-            dark:border-gray-600 placeholder-gray-300 dark:placeholder-gray-700
-            text-gray-900 dark:text-white outline-none text-base focus:ring-2
+                className='w-full bg-[#1e293b] px-3 py-1.5 2xl:py-3 border border-[#334155]
+            placeholder-[#94a3b8] text-white outline-none text-base focus:ring-2
             ring-blue-300'
               ></textarea>
             </div>
@@ -235,16 +234,16 @@ const AddTask = ({ open, setOpen, task }) => {
               <Loading />
             </div>
           ) : (
-            <div className='bg-gray-50 mt-6 mb-4 sm:flex sm:flex-row-reverse gap-4'>
+            <div className='bg-[#1e293b] mt-6 mb-4 sm:flex sm:flex-row-reverse gap-4'>
               <Button
                 label='Submit'
                 type='submit'
-                className='bg-blue-600 px-8 text-sm font-semibold text-white hover:bg-blue-700  sm:w-auto'
+                className='bg-[#3b82f6] px-8 text-sm font-semibold text-white hover:bg-[#2563eb] sm:w-auto'
               />
 
               <Button
                 type='button'
-                className='bg-white px-5 text-sm font-semibold text-gray-900 sm:w-auto'
+                className='bg-[#334155] px-5 text-sm font-semibold text-white sm:w-auto border border-[#334155] hover:bg-[#475569]'
                 onClick={() => setOpen(false)}
                 label='Cancel'
               />

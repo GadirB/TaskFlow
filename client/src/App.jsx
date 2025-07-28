@@ -8,6 +8,7 @@ import { Navbar, Sidebar } from "./components";
 import {
   Dashboard,
   Login,
+  Register,
   TaskDetail,
   Tasks,
   Trash,
@@ -22,7 +23,7 @@ function Layout() {
 
   return user ? (
     <div className='w-full h-screen flex flex-col md:flex-row'>
-      <div className='w-1/5 h-screen bg-white dark:bg-[#1f1f1f] sticky top-0 hidden md:block'>
+      <div className='w-1/5 h-screen bg-[#0f172a] sticky top-0 hidden md:block'>
         <Sidebar />
       </div>
 
@@ -95,7 +96,7 @@ const App = () => {
 
   return (
     <main className={theme}>
-      <div className='w-full min-h-screen bg-[#f3f4f6] dark:bg-[#0d0d0df4]'>
+      <div className='w-full min-h-screen bg-[#0f172a]'>
         <Routes>
           <Route element={<Layout />}>
             <Route index psth='/' element={<Navigate to='/dashboard' />} />
@@ -111,6 +112,7 @@ const App = () => {
           </Route>
 
           <Route path='/log-in' element={<Login />} />
+          <Route path='/register' element={<Register />} />
         </Routes>
       </div>
 

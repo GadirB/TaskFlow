@@ -14,6 +14,7 @@ import AddSubTask from './AddSubTask.jsx'
 const ICONS = {
     high: <MdKeyboardDoubleArrowUp />,
     medium: <MdKeyboardArrowUp />,
+    normal: <MdKeyboardArrowDown />,
     low: <MdKeyboardArrowDown />
 }
 
@@ -23,7 +24,7 @@ const TaskCard = ({ task }) => {
 
     return (
         <>
-            <div className='w-full h-fit bg-white dark:bg-[#1f1f1f] shadow-md p-4 rounded'>
+            <div className='w-full h-fit bg-[#1e293b] shadow-md p-4 rounded border border-[#334155]'>
                 <div className='w-full flex justify-between'>
                     <div className={clsx('flex flex-1 gap-1 items-center text-sm font-medium', PRIORITYSTYLES[task?.priority])}>
                         <span className='text-lg'>{ICONS[task?.priority]}</span>
@@ -35,17 +36,17 @@ const TaskCard = ({ task }) => {
                     <Link to={`/task/${task._id}`}>
                         <div className='flex items-center gap-2'>
                             <TaskColor className={TASK_TYPE[task.stage]} />
-                            <h4 className='text- line-clamp-1 text-black dark:text-white'>
+                            <h4 className='text- line-clamp-1 text-white'>
                                 {task?.title}
                             </h4>
                         </div>
                     </Link>
-                    <span className='text-sm text-gray-600 dark:text-gray-400'>
+                    <span className='text-sm text-[#94a3b8]'>
                         {formatDate(new Date(task?.date))}
                     </span>
                 </>
 
-                <div className='w-full border-t border-gray-200 dark:border-gray-700 my-2' />
+                <div className='w-full border-t border-[#334155] my-2' />
                 <div className='flex items-center justify-between mb-2'>
                     <TaskAssets 
                         activities={task?.activities?.length}
@@ -69,24 +70,24 @@ const TaskCard = ({ task }) => {
                 </div>
 
                 {task?.subTasks?.length > 0 ? (
-                    <div className='py-4 border-t border-gray-200 dark:border-gray-700'>
-                        <h5 className='text-base line-clamp-1 text-black dark:text-gray-400'>
+                    <div className='py-4 border-t border-[#334155]'>
+                        <h5 className='text-base line-clamp-1 text-white'>
                             {task?.subTasks[0].title}
                         </h5>
 
                         <div className='p-4 space-x-8'>
-                            <span className='text-sm text-gray-600 dark:text-gray-500'>
+                            <span className='text-sm text-[#94a3b8]'>
                                 {formatDate(new Date(task?.subTasks[0]?.date))}
                             </span>
-                            <span className='bg-blue-600/10 px-3 py-1 rounded-full text-blue-700 font-medium'>
+                            <span className='bg-[#3b82f6]/20 px-3 py-1 rounded-full text-[#3b82f6] font-medium'>
                                 {task?.subTasks[0]?.tag}
                             </span>
                         </div>
                     </div>
                 ) : (
                     <div>
-                        <div className='py-4 border-t border-gray-200 dark:border-gray-700'>
-                            <span className='text-gray-500'>No Sub-Task</span>
+                        <div className='py-4 border-t border-[#334155]'>
+                            <span className='text-[#94a3b8]'>No Sub-Task</span>
                         </div>    
                     </div>
                 )}

@@ -30,11 +30,11 @@ export default function ConfirmationDialog({
                         </p>
                     </Dialog.Title>
 
-                    <p className='text-center text-gray-500'>
+                    <p className='text-center text-[#94a3b8]'>
                         {msg ?? 'Are you sure to delete the selected record?'}
                     </p>
 
-                    <div className='bg-gray-50 py-3 sm:flex-row-reverse gap-4'>
+                    <div className='bg-[#1e293b] py-3 sm:flex-row-reverse gap-4'>
                         <Button
                             type='button'
                             className={clsx(
@@ -49,7 +49,7 @@ export default function ConfirmationDialog({
 
                         <Button
                             type='button'
-                            className='bg-white px-8 text-sm font-semibold text-gray-900 sm:w-auto border'
+                            className='bg-[#334155] px-8 text-sm font-semibold text-white sm:w-auto border border-[#334155] hover:bg-[#475569]'
                             onClick={() => closeDialog()}
                             label='Cancel'
                         />
@@ -76,11 +76,11 @@ export function UserAction({ open, setOpen, onClick = () => {} }) {
             </p>
           </Dialog.Title>
 
-          <p className='text-center text-gray-500'>
+          <p className='text-center text-[#94a3b8]'>
             {"Are you sure you want to activate or deactive this account?"}
           </p>
 
-          <div className='bg-gray-50 py-3 sm:flex sm:flex-row-reverse gap-4'>
+          <div className='bg-[#1e293b] py-3 sm:flex sm:flex-row-reverse gap-4'>
             <Button
               type='button'
               className={clsx(
@@ -93,7 +93,7 @@ export function UserAction({ open, setOpen, onClick = () => {} }) {
 
             <Button
               type='button'
-              className='bg-white px-8 text-sm font-semibold text-gray-900 sm:w-auto border'
+              className='bg-[#334155] px-8 text-sm font-semibold text-white sm:w-auto border border-[#334155] hover:bg-[#475569]'
               onClick={() => closeDialog()}
               label='No'
             />

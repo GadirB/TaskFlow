@@ -93,15 +93,23 @@ const Login = () => {
                 Forget Password?
               </span>
             </div>
-            {isLoading ? (
-              <Loading />
-            ) : (
+            <div className='flex flex-col gap-3'>
+              {isLoading ? (
+                <Loading />
+              ) : (
+                <Button
+                  type='submit'
+                  label='Log in'
+                  className='w-full h-10 bg-blue-700 text-white rounded-full'
+                />
+              )}
               <Button
-                type='submit'
-                label='Log in'
-                className='w-full h-10 bg-blue-700 text-white rounded-full'
+                type='button'
+                label='Create User'
+                onClick={() => navigate("/register")}
+                className='w-full h-10 bg-green-600 text-white rounded-full'
               />
-            )}
+            </div>
           </form>
         </div>
       </div>

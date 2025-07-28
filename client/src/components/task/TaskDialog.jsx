@@ -1,6 +1,6 @@
 import { Menu, Transition } from '@headlessui/react'
 import React, { act, Fragment, useState } from 'react'
-import { useChangeTaskStageMutation, useDuplicateTaskMutation, useTrashTastMutation } from '../../redux/slices/api/taskApiSlice'
+import { useChangeTaskStageMutation, useDuplicateTaskMutation, useTrashTaskMutation } from '../../redux/slices/api/taskApiSlice'
 import { toast } from 'sonner'
 import TaskColor from './TaskColor'
 import clsx from 'clsx'
@@ -60,13 +60,13 @@ const ChangeTaskActions = ({ _id, stage}) => {
     {
       label: "To-Do",
       stage: "todo",
-      icon: <TaskColor className='bg-blue-600' />,
+      icon: <TaskColor className='bg-blue-700' />,
       onClick: () => changeHanlder("todo"),
     },
     {
       label: "In Progress",
       stage: "in progress",
-      icon: <TaskColoror className='bg-yellow-600' />,
+      icon: <TaskColoror className='bg-orange-600' />,
       onClick: () => changeHanlder("in progress"),
     },
     {
@@ -82,7 +82,7 @@ const ChangeTaskActions = ({ _id, stage}) => {
       <Menu as='div' className='relative inline-block text-left'>
         <Menu.Button
           className={clsx(
-            'inline-flex w-full items-center gap-2 rounded-md px-4 py-2 text-sm font-medium text-gray-600 dark:text-gray-300'
+            'inline-flex w-full items-center gap-2 rounded-md px-4 py-2 text-sm font-medium text-white'
           )}
         >
           <FaExchangeAlt />
@@ -90,7 +90,7 @@ const ChangeTaskActions = ({ _id, stage}) => {
         </Menu.Button>
 
         <CustomTransition>
-          <Menu.Items className='absolute p-4 left-0 mt-2 w-40 divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black/5 focus:outline-none'>
+          <Menu.Items className='absolute p-4 left-0 mt-2 w-40 divide-y divide-[#334155] rounded-md bg-[#1e293b] shadow-lg ring-1 ring-[#334155] focus:outline-none border border-[#334155]'>
             <div className='px-1 py-1 space-y-2'>
               {items.map((el) => (
                 <Menu.Item key={el.label} disabled={stage === el.stage}>
@@ -99,7 +99,7 @@ const ChangeTaskActions = ({ _id, stage}) => {
                       disabled={stage === el.stage}
                       onClick={el?.onClick}
                       className={clsx(
-                        active ? 'bg-gray-200 text-gray-900' : 'text-gray-900', 'group flex gap-2 w-full items-center rounded-md px-2 py-2 text-sm disabled:opacity-50'
+                        active ? 'bg-[#334155] text-white' : 'text-white', 'group flex gap-2 w-full items-center rounded-md px-2 py-2 text-sm disabled:opacity-50'
                       )}
                     >
                       {el.icon}
@@ -124,7 +124,7 @@ export default function TaskDialog ({ task }) {
 
   const navigate = useNavigate()
 
-  const [deleteTask] = useTrashTastMutation()
+  const [deleteTask] = useTrashTaskMutation()
   const [duplicateTask] = useDuplicateTaskMutation()
 
   const deleteCliks = () => {

@@ -22,7 +22,7 @@ import {
   usePostTaskActivityMutation,
 } from "../redux/slices/api/taskApiSlice";
 import {
-  PRIOTITYSTYELS,
+  PRIORITYSTYLES,
   TASK_TYPE,
   getCompletedSubTasks,
   getInitials,
@@ -38,13 +38,15 @@ const assets = [
 const ICONS = {
   high: <MdKeyboardDoubleArrowUp />,
   medium: <MdKeyboardArrowUp />,
+  normal: <MdKeyboardArrowDown />,
   low: <MdKeyboardArrowDown />,
 };
 
 const bgColor = {
   high: "bg-red-200",
-  medium: "bg-yellow-200",
-  low: "bg-blue-200",
+  medium: "bg-orange-200",
+  normal: "bg-blue-200",
+  low: "bg-green-200",
 };
 
 const TABS = [
@@ -59,7 +61,7 @@ const TASKTYPEICON = {
     </div>
   ),
   started: (
-    <div className='w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center text-white'>
+    <div className='w-10 h-10 rounded-full bg-blue-700 flex items-center justify-center text-white'>
       <FaThumbsUp size={20} />
     </div>
   ),
@@ -79,7 +81,7 @@ const TASKTYPEICON = {
     </div>
   ),
   "in progress": (
-    <div className='w-8 h-8 flex items-center justify-center rounded-full bg-violet-600 text-white'>
+    <div className='w-8 h-8 flex items-center justify-center rounded-full bg-orange-600 text-white'>
       <GrInProgress size={16} />
     </div>
   ),
@@ -127,26 +129,26 @@ const Activities = ({ activity, id, refetch }) => {
             {TASKTYPEICON[item?.type]}
           </div>
           <div className='h-full flex items-center'>
-            <div className='w-0.5 bg-gray-300 h-full'></div>
+            <div className='w-0.5 bg-[#334155] h-full'></div>
           </div>
         </div>
 
         <div className='flex flex-col gap-y-1 mb-8'>
-          <p className='font-semibold'>{item?.by?.name}</p>
-          <div className='text-gray-500 space-x-2'>
+          <p className='font-semibold text-white'>{item?.by?.name}</p>
+          <div className='text-[#94a3b8] space-x-2'>
             <span className='capitalize'>{item?.type}</span>
             <span className='text-sm'>{moment(item?.date).fromNow()}</span>
           </div>
-          <div className='text-gray-700'>{item?.activity}</div>
+          <div className='text-white'>{item?.activity}</div>
         </div>
       </div>
     );
   };
 
   return (
-    <div className='w-full flex gap-10 2xl:gap-20 min-h-screen px-10 py-8 bg-white shadow rounded-md justify-between overflow-y-auto'>
+    <div className='w-full flex gap-10 2xl:gap-20 min-h-screen px-10 py-8 bg-[#1e293b] shadow rounded-md justify-between overflow-y-auto border border-[#334155]'>
       <div className='w-full md:w-1/2'>
-        <h4 className='text-gray-600 font-semibold text-lg mb-5'>Activities</h4>
+        <h4 className='text-white font-semibold text-lg mb-5'>Activities</h4>
         <div className='w-full space-y-0'>
           {activity?.map((item, index) => (
             <Card
@@ -159,7 +161,7 @@ const Activities = ({ activity, id, refetch }) => {
       </div>
 
       <div className='w-full md:w-1/3'>
-        <h4 className='text-gray-600 font-semibold text-lg mb-5'>
+        <h4 className='text-white font-semibold text-lg mb-5'>
           Add Activity
         </h4>
         <div className='w-full flex flex-wrap gap-5'>
@@ -171,7 +173,7 @@ const Activities = ({ activity, id, refetch }) => {
                 checked={selected === item ? true : false}
                 onChange={(e) => setSelected(item)}
               />
-              <p>{item}</p>
+              <p className='text-white'>{item}</p>
             </div>
           ))}
           <textarea
@@ -179,7 +181,7 @@ const Activities = ({ activity, id, refetch }) => {
             value={text}
             onChange={(e) => setText(e.target.value)}
             placeholder='Type ......'
-            className='bg-white w-full mt-10 border border-gray-300 outline-none p-4 rounded-md focus:ring-2 ring-blue-500'
+            className='bg-[#1e293b] w-full mt-10 border border-[#334155] outline-none p-4 rounded-md focus:ring-2 ring-[#3b82f6] text-white placeholder:text-[#94a3b8]'
           ></textarea>
           {isLoading ? (
             <Loading />
@@ -188,7 +190,7 @@ const Activities = ({ activity, id, refetch }) => {
               type='button'
               label='Submit'
               onClick={handleSubmit}
-              className='bg-blue-600 text-white rounded'
+              className='bg-[#3b82f6] text-white rounded hover:bg-[#2563eb]'
             />
           )}
         </div>
@@ -238,17 +240,17 @@ const TaskDetails = () => {
   return (
     <div className='w-full flex flex-col gap-3 mb-4 overflow-y-hidden'>
       {/* task detail */}
-      <h1 className='text-2xl text-gray-600 font-bold'>{task?.title}</h1>
+      <h1 className='text-2xl text-white font-bold'>{task?.title}</h1>
       <Tabs tabs={TABS} setSelected={setSelected}>
         {selected === 0 ? (
           <>
-            <div className='w-full flex flex-col md:flex-row gap-5 2xl:gap-8 bg-white shadow rounded-md px-8 py-8 overflow-y-auto'>
+            <div className='w-full flex flex-col md:flex-row gap-5 2xl:gap-8 bg-[#1e293b] shadow rounded-md px-8 py-8 overflow-y-auto border border-[#334155]'>
               <div className='w-full md:w-1/2 space-y-8'>
                 <div className='flex items-center gap-5'>
                   <div
                     className={clsx(
                       "flex gap-1 items-center text-base font-semibold px-3 py-1 rounded-full",
-                      PRIOTITYSTYELS[task?.priority],
+                      PRIORITYSTYLES[task?.priority],
                       bgColor[task?.priority]
                     )}
                   >
@@ -258,39 +260,39 @@ const TaskDetails = () => {
 
                   <div className={clsx("flex items-center gap-2")}>
                     <TaskColor className={TASK_TYPE[task?.stage]} />
-                    <span className='text-black uppercase'>{task?.stage}</span>
+                    <span className='text-white uppercase'>{task?.stage}</span>
                   </div>
                 </div>
 
-                <p className='text-gray-500'>
+                <p className='text-[#94a3b8]'>
                   Created At: {new Date(task?.date).toDateString()}
                 </p>
 
-                <div className='flex items-center gap-8 p-4 border-y border-gray-200'>
+                <div className='flex items-center gap-8 p-4 border-y border-[#334155]'>
                   <div className='space-x-2'>
-                    <span className='font-semibold'>Assets :</span>
-                    <span>{task?.assets?.length}</span>
+                    <span className='font-semibold text-white'>Assets :</span>
+                    <span className='text-white'>{task?.assets?.length}</span>
                   </div>
-                  <span className='text-gray-400'>|</span>
+                  <span className='text-[#94a3b8]'>|</span>
                   <div className='space-x-2'>
-                    <span className='font-semibold'>Sub-Task :</span>
-                    <span>{task?.subTasks?.length}</span>
+                    <span className='font-semibold text-white'>Sub-Task :</span>
+                    <span className='text-white'>{task?.subTasks?.length}</span>
                   </div>
                 </div>
 
                 <div className='space-y-4 py-6'>
-                  <p className='text-gray-500 font-semibold text-sm'>
+                  <p className='text-[#94a3b8] font-semibold text-sm'>
                     TASK TEAM
                   </p>
                   <div className='space-y-3'>
                     {task?.team?.map((m, index) => (
                       <div
                         key={index + m?._id}
-                        className='flex gap-4 py-2 items-center border-t border-gray-200'
+                        className='flex gap-4 py-2 items-center border-t border-[#334155]'
                       >
                         <div
                           className={
-                            "w-10 h-10 rounded-full text-white flex items-center justify-center text-sm -mr-1 bg-blue-600"
+                            "w-10 h-10 rounded-full text-white flex items-center justify-center text-sm -mr-1 bg-blue-700"
                           }
                         >
                           <span className='text-center'>
@@ -298,8 +300,8 @@ const TaskDetails = () => {
                           </span>
                         </div>
                         <div>
-                          <p className='text-lg font-semibold'>{m?.name}</p>
-                          <span className='text-gray-500'>{m?.title}</span>
+                          <p className='text-lg font-semibold text-white'>{m?.name}</p>
+                          <span className='text-[#94a3b8]'>{m?.title}</span>
                         </div>
                       </div>
                     ))}
@@ -308,7 +310,7 @@ const TaskDetails = () => {
                 {task?.subTasks?.length > 0 && (
                   <div className='space-y-4 py-6'>
                     <div className='flex items-center gap-5'>
-                      <p className='text-gray-500 font-semibold text-sm'>
+                      <p className='text-[#94a3b8] font-semibold text-sm'>
                         SUB-TASKS
                       </p>
                       <div
@@ -326,17 +328,17 @@ const TaskDetails = () => {
                     <div className='space-y-8'>
                       {task?.subTasks?.map((el, index) => (
                         <div key={index + el?._id} className='flex gap-3'>
-                          <div className='w-10 h-10 flex items-center justify-center rounded-full bg-violet-200'>
-                            <MdTaskAlt className='text-violet-600' size={26} />
+                          <div className='w-10 h-10 flex items-center justify-center rounded-full bg-[#3b82f6]/20'>
+                            <MdTaskAlt className='text-[#3b82f6]' size={26} />
                           </div>
 
                           <div className='space-y-1'>
                             <div className='flex gap-2 items-center'>
-                              <span className='text-sm text-gray-500'>
+                              <span className='text-sm text-[#94a3b8]'>
                                 {new Date(el?.date).toDateString()}
                               </span>
 
-                              <span className='px-2 py-0.5 text-center text-sm rounded-full bg-violet-100 text-violet-700 font-semibold lowercase'>
+                              <span className='px-2 py-0.5 text-center text-sm rounded-full bg-[#3b82f6]/20 text-[#3b82f6] font-semibold lowercase'>
                                 {el?.tag}
                               </span>
 
@@ -350,15 +352,15 @@ const TaskDetails = () => {
                                 {el?.isCompleted ? "done" : "in progress"}
                               </span>
                             </div>
-                            <p className='text-gray-700 pb-2'>{el?.title}</p>
+                            <p className='text-white pb-2'>{el?.title}</p>
 
                             <>
                               <button
                                 disabled={isSubmitting}
-                                className={`text-sm outline-none bg-gray-100 text-gray-800 p-1 rounded ${
+                                className={`text-sm outline-none bg-[#334155] text-white p-1 rounded ${
                                   el?.isCompleted
-                                    ? "hover:bg-rose-100 hover:text-rose-800"
-                                    : "hover:bg-emerald-100 hover:text-emerald-800"
+                                    ? "hover:bg-red-600 hover:text-white"
+                                    : "hover:bg-green-600 hover:text-white"
                                 } disabled:cursor-not-allowed`}
                                 onClick={() =>
                                   handleSubmitAction({
@@ -411,14 +413,14 @@ const TaskDetails = () => {
 
                 {task?.links?.length > 0 && (
                   <div className=''>
-                    <p className='text-lg font-semibold'>SUPPORT LINKS</p>
+                    <p className='text-lg font-semibold text-white'>SUPPORT LINKS</p>
                     <div className='w-full flex flex-col gap-4'>
                       {task?.links?.map((el, index) => (
                         <a
                           key={index}
                           href={el}
                           target='_blank'
-                          className='text-blue-600 hover:underline'
+                          className='text-[#3b82f6] hover:underline'
                         >
                           {el}
                         </a>

@@ -95,7 +95,7 @@ const NotificationPanel = () => {
                                             onClick={
                                                 item?.onClick ? () => item.onClick() : () => close()
                                             }
-                                            className='flex items-center justify-center gap-x-2.5 p-3 font-semibold text-blue-600 hover:bg-gray-100 dark:hover:bg-[#1c1c]'>
+                                            className='flex items-center justify-center gap-x-2.5 p-3 font-semibold text-blue-700 hover:bg-gray-100 dark:hover:bg-[#1c1c]'>
                                                 {item.name}
                                             </Link>
                                     ))}

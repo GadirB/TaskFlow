@@ -38,7 +38,7 @@ const AddSubTask = ({ open, setOpen, id }) => {
                 <form onSubmit={handleSubmit(handleOnSubmit)} className=''>
                     <Dialog.Title
                         as='h2'
-                        className='text-base font-bold leading-6 text-gray-900 mb-4'
+                        className='text-base font-bold leading-6 text-white mb-4'
                     >
                         ADD SUB-TASK
                     </Dialog.Title>
@@ -85,16 +85,16 @@ const AddSubTask = ({ open, setOpen, id }) => {
                             <Loading />
                         </div>
                     ) : (
-                        <div className='py-3 mt-4 flex sm:flex-row-reverse gap-4'>
+                        <div className='py-3 mt-4 flex sm:flex-row-reverse gap-4 bg-[#1e293b]'>
                             <Button
                                 type='submit'
-                                className='bg-blue-600 text-sm font-semibold text-white hover:bg-blue-700 sm:ml-3 sm:w-auto'
+                                className='bg-[#3b82f6] text-sm font-semibold text-white hover:bg-[#2563eb] sm:ml-3 sm:w-auto'
                                 label='Add Task'
                             />
 
                             <Button
                                 type='button'
-                                className='bg-white border text-sm font-semibold text-gray-900 sm:w-auto'
+                                className='bg-[#334155] border border-[#334155] text-sm font-semibold text-white sm:w-auto hover:bg-[#475569]'
                                 onClick={() => setOpen(false)}
                                 label='Cancel'
                             />
