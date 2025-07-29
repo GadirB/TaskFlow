@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { MdKeyboardArrowDown, MdKeyboardArrowUp, MdKeyboardDoubleArrowUp } from 'react-icons/md';
+import { Link } from 'react-router-dom';
 import { useTrashTaskMutation } from '../redux/slices/api/taskApiSlice.js';
 import { toast } from 'sonner';
 import Button from './Button.jsx';
 import TaskColor from './task/TaskColor.jsx';
-import { formatDate } from '../utils';
+import { formatDate, TASK_TYPE, PRIORITYSTYLES } from '../utils';
 import TaskAssets from './task/TaskAssets.jsx';
 import clsx from 'clsx';
 import ConfirmationDialog from './ConfirmationDialog.jsx';
@@ -18,7 +19,7 @@ const ICONS = {
 };
 
 
-const Table = ({ tasks }) => {
+const Table = ({ tasks = [] }) => {
   const [openDialog, setOpenDialog] = useState(false);
   const [selected, setSelected] = useState(null);
   const [openEdit, setOpenEdit] = useState(false);

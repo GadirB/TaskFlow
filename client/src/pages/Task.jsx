@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FaList } from "react-icons/fa";
 import { IoMdAdd } from "react-icons/io";
 import { MdGridView } from "react-icons/md";
@@ -34,7 +34,11 @@ const Task = () => {
   useEffect(() => {
     refetch();
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
-  }, [open]);
+  }, [open, refetch]);
+
+  useEffect(() => {
+    refetch();
+  }, [status, searchTerm, refetch]);
 
   return isLoading ? (
     <div className='py-10'>
@@ -75,7 +79,7 @@ const Task = () => {
           )}
         </Tabs>
       </div>
-      <AddTask open={open} setOpen={setOpen} />
+      <AddTask open={open} setOpen={setOpen} refetch={refetch} />
     </div>
   );
 };

@@ -59,7 +59,7 @@ const uploadFile = async (file) => {
   });
 };
 
-const AddTask = ({ open, setOpen, task }) => {
+const AddTask = ({ open, setOpen, task, refetch }) => {
   const defaultValues = {
     title: task?.title || "",
     date: dateFormatter(task?.date || new Date()),
@@ -118,7 +118,9 @@ const AddTask = ({ open, setOpen, task }) => {
 
       setTimeout(() => {
         setOpen(false);
-        window.location.reload();
+        if (refetch) {
+          refetch();
+        }
       }, 500);
     } catch (err) {
       console.log(err);

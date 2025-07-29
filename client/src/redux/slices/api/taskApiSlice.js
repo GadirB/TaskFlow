@@ -36,6 +36,21 @@ export const postApiSlice = apiSlice.injectEndpoints({
                 method: "GET",
                 credentials: "include",
             }),
+            transformResponse: (response) => {
+                if (Array.isArray(response)) {
+                    return {
+                        tasks: response.map(task => ({
+                            ...task,
+                            _id: task.id,
+                            activities: task.TaskActivities || [],
+                            subTasks: task.SubTasks || [],
+                            assets: task.TaskAssets || [],
+                            links: task.TaskLinks || []
+                        }))
+                    };
+                }
+                return response;
+            },
         }),
 
         getSingleTask: builder.query({
