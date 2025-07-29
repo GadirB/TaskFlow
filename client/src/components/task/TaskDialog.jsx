@@ -1,5 +1,5 @@
 import { Menu, Transition } from '@headlessui/react'
-import React, { act, Fragment, useState } from 'react'
+import React, { Fragment, useState } from 'react'
 import { useChangeTaskStageMutation, useDuplicateTaskMutation, useTrashTaskMutation } from '../../redux/slices/api/taskApiSlice'
 import { toast } from 'sonner'
 import TaskColor from './TaskColor'
@@ -66,7 +66,7 @@ const ChangeTaskActions = ({ _id, stage}) => {
     {
       label: "In Progress",
       stage: "in progress",
-      icon: <TaskColoror className='bg-orange-600' />,
+      icon: <TaskColor className='bg-orange-600' />,
       onClick: () => changeHanlder("in progress"),
     },
     {

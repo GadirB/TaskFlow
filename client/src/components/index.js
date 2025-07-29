@@ -2,7 +2,7 @@ import AddUser from "./AddUser";
 import Button from "./Button";
 import ChangePassword from "./ChangePassword.jsx";
 import { Chart } from "./Chart.jsx";
-import ConfirmatioDialog, { UserAction } from "./ConfirmationDialog";
+import ConfirmationDialog, { UserAction } from "./ConfirmationDialog";
 import Loading from "./Loading.jsx";
 import ModalWrapper from "./ModalWrapper";
 import Navbar from "./Navbar";
@@ -20,7 +20,7 @@ export {
   Button,
   ChangePassword,
   Chart,
-  ConfirmatioDialog,
+  ConfirmationDialog,
   Loading,
   ModalWrapper,
   Navbar,

@@ -14,7 +14,6 @@ import AddSubTask from './AddSubTask.jsx'
 const ICONS = {
     high: <MdKeyboardDoubleArrowUp />,
     medium: <MdKeyboardArrowUp />,
-    normal: <MdKeyboardArrowDown />,
     low: <MdKeyboardArrowDown />
 }
 

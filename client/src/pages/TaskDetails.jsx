@@ -38,7 +38,6 @@ const assets = [
 const ICONS = {
   high: <MdKeyboardDoubleArrowUp />,
   medium: <MdKeyboardArrowUp />,
-  normal: <MdKeyboardArrowDown />,
   low: <MdKeyboardArrowDown />,
 };
 

@@ -11,7 +11,7 @@ import { toast } from "sonner";
 import {
   AddUser,
   Button,
-  ConfirmatioDialog,
+  ConfirmationDialog,
   Loading,
   Title,
 } from "../components";

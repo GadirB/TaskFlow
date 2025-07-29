@@ -1,4 +1,5 @@
 import asyncHandler from "express-async-handler";
+import bcrypt from "bcryptjs";
 import { Op } from "sequelize";
 import User from "../models/User.js";
 import generateToken from "../utils/generateToken.js";

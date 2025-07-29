@@ -5,7 +5,7 @@ import { toast } from "sonner";
 import {
   AddUser,
   Button,
-  ConfirmatioDialog,
+  ConfirmationDialog,
   Loading,
   Title,
   UserAction,
@@ -181,7 +181,7 @@ const Users = () => {
         key={new Date().getTime().toString()}
       />
 
-      <ConfirmatioDialog
+      <ConfirmationDialog
         open={openDialog}
         setOpen={setOpenDialog}
         onClick={deleteHandler}

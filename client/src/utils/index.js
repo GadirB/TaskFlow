@@ -51,8 +51,7 @@ export const updateURL = ({ searchTerm, navigate, location }) => {
 export const PRIORITYSTYLES = {
   high: "text-red-600",
   medium: "text-orange-600",
-  normal: "text-blue-600",
-  low: "text-green-600",
+  low: "text-blue-600",
 };
 
 export const TASK_TYPE = {

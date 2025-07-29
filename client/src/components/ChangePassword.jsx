@@ -2,7 +2,7 @@ import { Dialog } from "@headlessui/react";
 import React from "react";
 import { useForm } from "react-hook-form";
 import Button from "./Button";
-import Loader from "./Loading.jsx";
+import Loading from "./Loading.jsx";
 import ModalWrapper from "./ModalWrapper";
 import Textbox from "./Textbox";
 import { useChangePasswordMutation } from "../redux/slices/api/userApiSlice";
@@ -72,7 +72,7 @@ const ChangePassword = ({ open, setOpen }) => {
 
           {isLoading ? (
             <div className='py-5'>
-              <Loader />
+              <Loading />
             </div>
           ) : (
             <div className='py-3 mt-4 sm:flex sm:flex-row-reverse'>
